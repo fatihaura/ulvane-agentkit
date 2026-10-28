@@ -1,6 +1,6 @@
 {
   "name": "ulvane-agentkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Coinbase AgentKit action provider for Ulvane: x402-priced onchain intelligence for Base (token risk, wallet PnL, wallet risk, top traders, pre-trade gate), with spend caps and signature verification.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
