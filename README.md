@@ -28,6 +28,12 @@ const agentKit = await AgentKit.from({
 });
 ```
 
+> **Install note (upstream issue):** a fresh install of `@coinbase/agentkit` 0.10.x can fail to load with `ERR_PACKAGE_PATH_NOT_EXPORTED` from `@solana/kit` (a version conflict between AgentKit's own Solana dependencies — it reproduces without this package). Installing `graphql` and adding this to your `package.json` fixes it (verified):
+>
+> ```json
+> { "overrides": { "@solana/kit": "^8.0.0" } }
+> ```
+
 Options: `ulvaneActionProvider({ maxPriceUsd: 0.05, baseUrl, trustedSigner })`.
 
 Use a dedicated wallet holding only a few dollars of USDC.
