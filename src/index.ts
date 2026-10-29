@@ -151,9 +151,17 @@ export function ulvaneActionProvider(options: UlvaneOptions = {}) {
     {
       name: "ulvane_token_risk",
       description:
-        "Check whether a Base token is a hand-verified real token, a symbol impersonator (scam clone), or simply unvetted. Call before buying an unfamiliar token. Costs $0.01 USDC via x402.",
+        "Check whether a Base token is a hand-verified real token, a symbol impersonator (scam clone), or simply unvetted, plus neutral facts read from the contract (ownership, upgradeable proxy, mint/pause/blacklist functions) and from published token lists (including lookalike symbols). Call before buying an unfamiliar token. Costs $0.01 USDC via x402.",
       schema: z.object({ address: addressSchema("token") }),
       invoke: (wp: WalletProvider, args: { address: string }) => paid(wp, `/api/token/${args.address}/risk`, 0.01),
+    },
+    {
+      name: "ulvane_tokens_risk_batch",
+      description:
+        "Token risk for up to 10 Base tokens in one call (flat price), with the same checks and signals as ulvane_token_risk for each. One token that can't be read fails on its own row without failing the call. Costs $0.05 USDC via x402.",
+      schema: z.object({ addresses: z.array(addressSchema("token")).min(1).max(10) }),
+      invoke: (wp: WalletProvider, args: { addresses: string[] }) =>
+        paid(wp, `/api/tokens/risk?addresses=${[...new Set(args.addresses)].join(",")}`, 0.05),
     },
     {
       name: "ulvane_wallet_pnl",

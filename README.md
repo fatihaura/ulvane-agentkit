@@ -5,6 +5,7 @@ A [Coinbase AgentKit](https://github.com/coinbase/agentkit) action provider for 
 | Action | What it does | Price |
 |---|---|---|
 | `ulvane_token_risk` | Verified / impersonator / unvetted check for a token | $0.01 |
+| `ulvane_tokens_risk_batch` | Token risk for up to 10 tokens in one call | $0.05 |
 | `ulvane_wallet_pnl` | Realized/unrealized PnL from recent swaps | $0.02 |
 | `ulvane_wallet_risk` | Has this wallet traded flagged impersonator tokens? | $0.02 |
 | `ulvane_token_top_traders` | Biggest recent traders of a token, with PnL | $0.03 |
